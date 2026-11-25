@@ -11,6 +11,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .slider-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
+    .slider-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.65); color: #fff; border: none;
+      width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+      font-size: 16px; display: flex; align-items: center; justify-content: center;
+      z-index: 5; transition: background 0.2s;
+    }
+    .slider-btn:hover { background: rgba(0, 0, 0, 0.9); }
+    .slider-prev { left: 10px; }
+    .slider-next { right: 10px; }
+    .slider-count {
+      position: absolute; bottom: 10px; right: 12px;
+      background: rgba(0, 0, 0, 0.65); color: #fff;
+      font-size: 12px; padding: 3px 9px; border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace; z-index: 5;
+    }
+  </style>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -188,68 +208,6 @@
         </article>
 
         <article class="card reveal">
-          <a class="card-media" href="https://dhruvparmar05.github.io/AI-SARTHI/" target="_blank" rel="noopener" aria-label="Open FormSaathi">
-            <img src="./assets/E1.png" alt="FormSaathi Screenshot" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          </a>
-          <div class="card-body">
-            <p class="card-meta">03 · Product · Ongoing</p>
-            <h3>FormSaathi (AI-SARTHI)</h3>
-            <p class="tag">AI-enabled gov &amp; job application companion</p>
-            <p>A document pre-flight verification platform that guides users through government jobs, scholarships and citizen service applications.</p>
-            <ul class="bullets">
-              <li>AI/ML modules for natural-language search, eligibility matchmaking and certificate expiry/issue-date validation.</li>
-              <li>100% client-side, zero-data-retention engine for image resizing (HTML5 Canvas) and PDF compression.</li>
-              <li>"Locked Gateway" checklists, plus English and Gujarati support for rural and digitally marginalised applicants.</li>
-            </ul>
-            <ul class="chips small"><li>JavaScript</li><li>HTML5 Canvas</li><li>AI/ML</li></ul>
-            <a class="link-arrow" href="https://dhruvparmar05.github.io/AI-SARTHI/" target="_blank" rel="noopener">View live project →</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- EDUCATION + CERTIFICATIONS -->
-    <section class="section wrap" id="rest">
-      <p class="label">The rest of it</p>
-      <h2>Education &amp; certifications</h2>
-      <div class="rest-grid">
-        <div class="reveal">
-          <h3>Education</h3>
-          <ul class="rows">
-            <li><strong>Bachelors in Information Technology</strong><span>Ahmedabad Institute of Technology</span><span class="mono">CGPA 7.65 · CPI 6.84 · ongoing</span></li>
-            <li><strong>Diploma in Information Technology</strong><span>Sigma Institute of Technology</span><span class="mono">CGPA 7.53 · CPI 7.80 · 2022 – 2024</span></li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <h3>Certifications</h3>
-          <ul class="rows">
-            <li><strong>n8n Participation</strong><span>Building AI Agents using n8n</span></li>
-            <li><strong>Python</strong><span>Python Programming for Agentic AI</span></li>
-            <li><strong>Agentic AI — Saksham</strong><span>2-day Agentic AI workshop</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section wrap contact" id="contact">
-      <h2 class="display-sm">Let's build<br><em>something.</em></h2>
-      <p class="sub">Open to interesting problems and cool builds. The fastest way to reach me is email.</p>
-      <a class="email" href="mailto:dhruv532005@gmail.com">dhruv532005@gmail.com</a>
-      <div class="links">
-        <a href="tel:+919510046716">Call ↗</a>
-        <a href="https://github.com/dhruvparmar05" target="_blank" rel="noopener">GitHub ↗</a>
-        <a href="assets/dhruv-parmar-resume.pdf" download>Résumé ↓</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer wrap">
-    <a class="to-top" href="#top" aria-label="Back to top">↑</a>
-    <p>Dhruv Parmar · Ahmedabad, India</p>
-    <p class="muted">Thanks for scrolling all the way down :)</p>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+          <div class="card-media">
+            <div class="slider-wrap" id="formsaathi-slider">
+              <button type="button" class="slider
