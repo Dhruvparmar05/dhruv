@@ -12,6 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
+    /* Fix: Ensure all sections & cards stay visible immediately */
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
     .card-media {
       background: #121216 !important;
       aspect-ratio: 16 / 10 !important;
@@ -45,11 +51,10 @@
       object-fit: contain !important;
       border-radius: 6px;
       display: block;
-      transition: opacity 0.25s ease;
     }
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.75); color: #fff; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0, 0, 0, 0.75); color: #fff; border: 1px solid rgba(255,255,255,0.25);
       width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
       font-size: 18px; display: flex; align-items: center; justify-content: center;
       z-index: 10; transition: background 0.2s;
@@ -257,3 +262,108 @@
         </article>
 
         <!-- 03: FormSaathi -->
+        <article class="card reveal">
+          <div class="card-media">
+            <div class="slider-wrap">
+              <button type="button" class="slider-btn slider-prev" onclick="moveSlide('fs', -1)" aria-label="Previous screenshot">‹</button>
+              <a href="https://formsaathiii.vercel.app/" target="_blank" rel="noopener" aria-label="Open FormSaathi">
+                <img id="fs-img" src="assets/F1.jpeg" alt="FormSaathi Screenshot">
+              </a>
+              <button type="button" class="slider-btn slider-next" onclick="moveSlide('fs', 1)" aria-label="Next screenshot">›</button>
+              <span class="slider-count" id="fs-count">1 / 7</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">03 · Product · Ongoing</p>
+            <h3>FormSaathi (AI-SARTHI)</h3>
+            <p class="tag">AI-enabled gov &amp; job application companion</p>
+            <p>A document pre-flight verification platform that guides users through government jobs, scholarships and citizen service applications.</p>
+            <ul class="bullets">
+              <li>AI/ML modules for natural-language search, eligibility matchmaking and certificate expiry/issue-date validation.</li>
+              <li>100% client-side, zero-data-retention engine for image resizing (HTML5 Canvas) and PDF compression.</li>
+              <li>"Locked Gateway" checklists, plus English and Gujarati support for rural and digitally marginalised applicants.</li>
+            </ul>
+            <ul class="chips small"><li>JavaScript</li><li>HTML5 Canvas</li><li>AI/ML</li></ul>
+            <a class="link-arrow" href="https://formsaathiii.vercel.app/" target="_blank" rel="noopener">View live project →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDUCATION + CERTIFICATIONS -->
+    <section class="section wrap" id="rest">
+      <p class="label">The rest of it</p>
+      <h2>Education &amp; certifications</h2>
+      <div class="rest-grid">
+        <div class="reveal">
+          <h3>Education</h3>
+          <ul class="rows">
+            <li><strong>Bachelors in Information Technology</strong><span>Ahmedabad Institute of Technology</span><span class="mono">CGPA 7.65 · CPI 6.84 · ongoing</span></li>
+            <li><strong>Diploma in Information Technology</strong><span>Sigma Institute of Technology</span><span class="mono">CGPA 7.53 · CPI 7.80 · 2022 – 2024</span></li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <h3>Certifications</h3>
+          <ul class="rows">
+            <li><strong>n8n Participation</strong><span>Building AI Agents using n8n</span></li>
+            <li><strong>Python</strong><span>Python Programming for Agentic AI</span></li>
+            <li><strong>Agentic AI — Saksham</strong><span>2-day Agentic AI workshop</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section wrap contact" id="contact">
+      <h2 class="display-sm">Let's build<br><em>something.</em></h2>
+      <p class="sub">Open to interesting problems and cool builds. The fastest way to reach me is email.</p>
+      <a class="email" href="mailto:dhruv532005@gmail.com">dhruv532005@gmail.com</a>
+      <div class="links">
+        <a href="tel:+919510046716">Call ↗</a>
+        <a href="https://github.com/dhruvparmar05" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="assets/dhruv-parmar-resume.pdf" download>Résumé ↓</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+    <p>Dhruv Parmar · Ahmedabad, India</p>
+    <p class="muted">Thanks for scrolling all the way down :)</p>
+  </footer>
+
+  <script>
+    var sliders = {
+      pilot: { names: ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"], idx: 0 },
+      volt:  { names: ["EV", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "E10", "E11"], idx: 0 },
+      fs:    { names: ["F1", "F2", "F3", "F4", "F5", "F6", "F7"], idx: 0 }
+    };
+    var imgExts = [".jpeg", ".JPEG", ".png", ".PNG", ".jpg", ".JPG"];
+
+    function renderSlide(key) {
+      var s = sliders[key];
+      var name = s.names[s.idx];
+      var img = document.getElementById(key + "-img");
+      var extIdx = 0;
+      function tryNext() {
+        if (extIdx >= imgExts.length) return;
+        img.src = "assets/" + name + imgExts[extIdx++];
+      }
+      img.onerror = tryNext;
+      tryNext();
+      document.getElementById(key + "-count").textContent = (s.idx + 1) + " / " + s.names.length;
+    }
+
+    function moveSlide(key, step) {
+      var s = sliders[key];
+      s.idx = (s.idx + step + s.names.length) % s.names.length;
+      renderSlide(key);
+    }
+
+    renderSlide("pilot");
+    renderSlide("volt");
+    renderSlide("fs");
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>
