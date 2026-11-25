@@ -12,11 +12,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .slider-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
-    .slider-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
+    .card-media {
+      background: #121216 !important;
+      aspect-ratio: 16 / 10 !important;
+      height: auto !important;
+      min-height: 240px;
+    }
+    .slider-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      background: #121216;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .slider-wrap a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .slider-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: 320px;
+      object-fit: contain !important;
+      border-radius: 6px;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7); color: #fff; border: none;
+      background: rgba(0, 0, 0, 0.75); color: #fff; border: 1px solid rgba(255,255,255,0.2);
       width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
       font-size: 18px; display: flex; align-items: center; justify-content: center;
       z-index: 10; transition: background 0.2s;
@@ -26,7 +59,7 @@
     .slider-next { right: 10px; }
     .slider-count {
       position: absolute; bottom: 10px; right: 12px;
-      background: rgba(0, 0, 0, 0.7); color: #fff;
+      background: rgba(0, 0, 0, 0.78); color: #fff;
       font-size: 12px; padding: 3px 9px; border-radius: 12px;
       font-family: 'JetBrains Mono', monospace; z-index: 10;
     }
@@ -65,7 +98,7 @@
       <h2>Hi there!</h2>
       <div class="about-grid">
         <figure class="portrait reveal">
-          <img src="assets/dhruv.jpg" alt="Dhruv Parmar" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <img src="assets/dhruv.jpg" alt="Dhruv Parmar" width="1254" height="1254">
         </figure>
         <div class="about-copy reveal">
           <p class="big">I'm an IT student and digital marketing executive who builds with machine learning, Python and the web.</p>
@@ -171,10 +204,18 @@
       <p class="sub">Highlights, stack and live links for each project.</p>
 
       <div class="projects">
+        <!-- 01: ProjectPilot AI -->
         <article class="card reveal">
-          <a class="card-media" href="https://pilotai-platform.vercel.app" target="_blank" rel="noopener" aria-label="Open ProjectPilot AI">
-            <img src="assets/P1.jpeg" alt="ProjectPilot AI Screenshot" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          </a>
+          <div class="card-media">
+            <div class="slider-wrap">
+              <button type="button" class="slider-btn slider-prev" onclick="moveSlide('pilot', -1)" aria-label="Previous screenshot">‹</button>
+              <a href="https://pilotai-platform.vercel.app" target="_blank" rel="noopener" aria-label="Open ProjectPilot AI">
+                <img id="pilot-img" src="assets/P1.jpeg" alt="ProjectPilot AI Screenshot">
+              </a>
+              <button type="button" class="slider-btn slider-next" onclick="moveSlide('pilot', 1)" aria-label="Next screenshot">›</button>
+              <span class="slider-count" id="pilot-count">1 / 8</span>
+            </div>
+          </div>
           <div class="card-body">
             <p class="card-meta">01 · Product</p>
             <h3>ProjectPilot AI</h3>
@@ -189,10 +230,18 @@
           </div>
         </article>
 
+        <!-- 02: VoltRent -->
         <article class="card reveal">
-          <a class="card-media" href="https://rent-a-volt.vercel.app/" target="_blank" rel="noopener" aria-label="Open VoltRent">
-            <img src="assets/EV.jpeg" alt="VoltRent Screenshot" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          </a>
+          <div class="card-media">
+            <div class="slider-wrap">
+              <button type="button" class="slider-btn slider-prev" onclick="moveSlide('volt', -1)" aria-label="Previous screenshot">‹</button>
+              <a href="https://rent-a-volt.vercel.app/" target="_blank" rel="noopener" aria-label="Open VoltRent">
+                <img id="volt-img" src="assets/EV.jpeg" alt="VoltRent Screenshot">
+              </a>
+              <button type="button" class="slider-btn slider-next" onclick="moveSlide('volt', 1)" aria-label="Next screenshot">›</button>
+              <span class="slider-count" id="volt-count">1 / 12</span>
+            </div>
+          </div>
           <div class="card-body">
             <p class="card-meta">02 · System · Ongoing</p>
             <h3>VoltRent</h3>
@@ -207,101 +256,4 @@
           </div>
         </article>
 
-        <article class="card reveal">
-          <div class="card-media">
-            <div class="slider-wrap" id="formsaathi-slider">
-              <button type="button" class="slider-btn slider-prev" onclick="changeSlide(-1)" aria-label="Previous screenshot">‹</button>
-              <a href="https://formsaathiii.vercel.app/" target="_blank" rel="noopener" aria-label="Open FormSaathi" style="display:block; width:100%; height:100%;">
-                <img id="formsaathi-img" src="assets/F1.jpeg" alt="FormSaathi Screenshot 1">
-              </a>
-              <button type="button" class="slider-btn slider-next" onclick="changeSlide(1)" aria-label="Next screenshot">›</button>
-              <span class="slider-count" id="formsaathi-count">1 / 7</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <p class="card-meta">03 · Product · Ongoing</p>
-            <h3>FormSaathi (AI-SARTHI)</h3>
-            <p class="tag">AI-enabled gov &amp; job application companion</p>
-            <p>A document pre-flight verification platform that guides users through government jobs, scholarships and citizen service applications.</p>
-            <ul class="bullets">
-              <li>AI/ML modules for natural-language search, eligibility matchmaking and certificate expiry/issue-date validation.</li>
-              <li>100% client-side, zero-data-retention engine for image resizing (HTML5 Canvas) and PDF compression.</li>
-              <li>"Locked Gateway" checklists, plus English and Gujarati support for rural and digitally marginalised applicants.</li>
-            </ul>
-            <ul class="chips small"><li>JavaScript</li><li>HTML5 Canvas</li><li>AI/ML</li></ul>
-            <a class="link-arrow" href="https://formsaathiii.vercel.app/" target="_blank" rel="noopener">View live project →</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- EDUCATION + CERTIFICATIONS -->
-    <section class="section wrap" id="rest">
-      <p class="label">The rest of it</p>
-      <h2>Education &amp; certifications</h2>
-      <div class="rest-grid">
-        <div class="reveal">
-          <h3>Education</h3>
-          <ul class="rows">
-            <li><strong>Bachelors in Information Technology</strong><span>Ahmedabad Institute of Technology</span><span class="mono">CGPA 7.65 · CPI 6.84 · ongoing</span></li>
-            <li><strong>Diploma in Information Technology</strong><span>Sigma Institute of Technology</span><span class="mono">CGPA 7.53 · CPI 7.80 · 2022 – 2024</span></li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <h3>Certifications</h3>
-          <ul class="rows">
-            <li><strong>n8n Participation</strong><span>Building AI Agents using n8n</span></li>
-            <li><strong>Python</strong><span>Python Programming for Agentic AI</span></li>
-            <li><strong>Agentic AI — Saksham</strong><span>2-day Agentic AI workshop</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section wrap contact" id="contact">
-      <h2 class="display-sm">Let's build<br><em>something.</em></h2>
-      <p class="sub">Open to interesting problems and cool builds. The fastest way to reach me is email.</p>
-      <a class="email" href="mailto:dhruv532005@gmail.com">dhruv532005@gmail.com</a>
-      <div class="links">
-        <a href="tel:+919510046716">Call ↗</a>
-        <a href="https://github.com/dhruvparmar05" target="_blank" rel="noopener">GitHub ↗</a>
-        <a href="assets/dhruv-parmar-resume.pdf" download>Résumé ↓</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer wrap">
-    <a class="to-top" href="#top" aria-label="Back to top">↑</a>
-    <p>Dhruv Parmar · Ahmedabad, India</p>
-    <p class="muted">Thanks for scrolling all the way down :)</p>
-  </footer>
-
-  <script>
-    const fsNames = ["F1", "F2", "F3", "F4", "F5", "F6", "F7"];
-    const fsExts = [".jpeg", ".JPEG", ".jpg", ".JPG", ".png", ".PNG"];
-    let fsIndex = 0;
-
-    function loadFsImage(index) {
-      const name = fsNames[index];
-      const img = document.getElementById("formsaathi-img");
-      let extIdx = 0;
-      function tryNext() {
-        if (extIdx >= fsExts.length) return;
-        img.src = "assets/" + name + fsExts[extIdx++];
-      }
-      img.onerror = tryNext;
-      tryNext();
-      document.getElementById("formsaathi-count").textContent = (index + 1) + " / " + fsNames.length;
-    }
-
-    function changeSlide(step) {
-      fsIndex = (fsIndex + step + fsNames.length) % fsNames.length;
-      loadFsImage(fsIndex);
-    }
-
-    loadFsImage(0);
-  </script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+        <!-- 03: FormSaathi -->
